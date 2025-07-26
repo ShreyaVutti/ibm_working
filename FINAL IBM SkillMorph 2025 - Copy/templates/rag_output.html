@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Resume Results - SkillMorph AI</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #f0f4f8, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: white;
+      padding: 20px 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .left-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00aaff;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .auth-buttons button {
+      margin-left: 10px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .auth-buttons .login-btn {
+      background-color: white;
+      color: #043984;
+      border: 1px solid #043984;
+    }
+
+    .auth-buttons .register-btn {
+      background-color: #00aaff;
+      color: white;
+    }
+
+    .results-container {
+      background-color: white;
+      padding: 40px;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin: 60px auto;
+    }
+
+    .results-container h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #043984;
+    }
+
+    .results-container h3 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .results-container p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="left-nav">
+        <div class="logo">SkillMorph AI</div>
+        <ul class="nav-links">
+          <li><a href="landing_page.html">Home</a></li>
+          <li><a href="#jobs">Jobs</a></li>
+          <li><a href="#internships">Internships</a></li>
+          <li><a href="#courses">Courses</a></li>
+        </ul>
+      </div>
+      <div class="auth-buttons">
+        <a href="login.html"><button class="login-btn">Login</button></a>
+        <a href="register.html"><button class="register-btn">Sign Up</button></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="results-container">
+      <h1>AI Summary & Recommendations</h1>
+
+      <div>
+        <h3>Skills:</h3>
+        <p>{{ parsed.skills | join(', ') if parsed.skills else 'No skills found' }}</p>
+      </div>
+
+      <div>
+        <h3>Projects:</h3>
+        <p>{{ parsed.projects | join(', ') if parsed.projects else 'No projects found' }}</p>
+      </div>
+
+      <div>
+        <h3>Summary:</h3>
+        <p>{{ rag_response.summary if rag_response.summary else 'No summary available' }}</p>
+      </div>
+
+      <div>
+        <h3>Recommendations:</h3>
+        <p>{{ rag_response.recommendations if rag_response.recommendations else 'No recommendations available' }}</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
